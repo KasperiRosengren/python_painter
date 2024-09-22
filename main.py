@@ -80,49 +80,6 @@ def parse_args():
     return screenshots, squrare_min_max, square_size
 
 def main(screenshots: str, squrare_min_max: tuple[int], square_size: Size):
-    software = Krita(f"{screenshots}/krita")
-    machine = Machine(screenshots)
-
-    machine.open_software(software)
-    software.start_new_drawing(2560, 1440)
-
-    square_count = random.randint(*squrare_min_max)
-    
-    drawing_boundaries = software.get_drawing_boundaries()
-    
-    brush_size = software.get_brush_size()
-    brush_width = brush_size // 2 # Not the most accurate way of doing thing, but works for now
-
-    if square_size.width < brush_size or square_size.height < brush_size:
-        raise RuntimeError(f"Trying to use too small square size for the current brush {brush_size=} {square_size=}")
-
-
-    boundary_top_left = Point(drawing_boundaries.left + brush_width, drawing_boundaries.top + brush_width)
-    boundary_size = Size(drawing_boundaries.width - brush_width, drawing_boundaries.height - brush_width)
-    square_boundaries = Square(boundary_top_left, boundary_size, 0)
-
-    squares = create_squares(square_count, square_boundaries, square_size, brush_size)
-
-    print(f"{square_count=}")
-    print(f"{drawing_boundaries=}")
-    print(f"{square_boundaries=}")
-
-    
-    
-    print("Squares created successfully!".center(70, "-"))
-    for id, square in enumerate(squares):
-        print(f"Square {id}")
-        print(square)
-        software.draw_square_freehand(square)
-    print("Squares drawn!".center(70, "-"))
-    
-    found_squares = software.count_base_image_squares("square_freehand_40_100_100_black_on_white.png")
-    print(f"Found: {found_squares}/{square_count}")
-
-    #draw_random_lines_untill_no_square_found(software, square_boundaries)
-    machine.close_software(software)
-                
-def new_main(screenshots: str, squrare_min_max: tuple[int], square_size: Size):
     print("STARTING".center(70, "-"))
     machine = Machine(screenshots) # move to args -> windows11, debian12 and ubuntu21.04 do things differently
     software = Krita(f"{screenshots}/krita") # move to args -> krita, paint and gimp have completely different UI and hotkeys
@@ -163,7 +120,6 @@ def new_main(screenshots: str, squrare_min_max: tuple[int], square_size: Size):
 
 if __name__=="__main__":
     args = parse_args()
-    #main(*args)
-    new_main(*args)
+    main(*args)
 
     
