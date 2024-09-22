@@ -21,6 +21,25 @@ class Square(Shape):
             top_left (Point): test
             size (Size): test
             brush_size (int): test
+
+        Examples:
+            Create a square with top left at (0,0), size (100,100) and brush size of 40:
+                >>> test_square = Square(Point(0,0), Size(100,100), 40)
+                >>> print(f"{test_square.top_left}, {test_square.top_right}, {test_square.bottom_left}, {test_square.bottom_right}")
+                Point(x=0, y=0), Point(x=100, y=0), Point(x=0, y=100), Point(x=100, y=100)
+                >>> print(f"{test_square.size.width}, {test_square.size.height}")
+                100, 100
+                >>> print(f"{test_square.brush_size}, {test_square.brush_width}")
+                40, 20
+
+            Create a square with top left at (0,0), size (100,100) and brush size of 40:
+                >>> test_square = Square(Point(0,0), Size(100,100), 40)
+                >>> print(f"{test_square.top_left}, {test_square.top_right}, {test_square.bottom_left}, {test_square.bottom_right}")
+                Point(x=0, y=0), Point(x=100, y=0), Point(x=0, y=100), Point(x=100, y=100)
+                >>> print(f"{test_square.size.width}, {test_square.size.height}")
+                100, 100
+                >>> print(f"{test_square.brush_size}, {test_square.brush_width}")
+                40, 20
         """
         self.set_size(size)
         self.calculate_corners(top_left)
@@ -31,6 +50,57 @@ class Square(Shape):
 
     
     def set_size(self, size: Size):
+        """
+
+        Args:
+            size (Size): 
+        
+        raises:
+            SquareSizeNotAllowed: When the square size is smaller than 1x1
+
+        Examples:
+            Set size to 100x100:
+                >>> test_square = Square(Point(0,0), Size(250,250), 40)
+                >>> test_square.set_size(Size(100,100))
+                >>> print(f"{test_square.size}")
+                Size(width=100, height=100)
+
+            Set size to zero:
+                >>> test_square = Square(Point(0,0), Size(250,250), 40)
+                >>> test_square.set_size(Size(0,0))
+                Traceback (most recent call last):
+                    ...
+                square.SquareSizeNotAllowed: Minimum square size is Size(1,1). Given Size(width=0, height=0)
+                >>> print(f"{test_square.size}")
+                Size(width=250, height=250)
+            
+            Set size to negative:
+                >>> test_square = Square(Point(0,0), Size(250,250), 40)
+                >>> test_square.set_size(Size(-100, -100))
+                Traceback (most recent call last):
+                    ...
+                square.SquareSizeNotAllowed: Minimum square size is Size(1,1). Given Size(width=-100, height=-100)
+                >>> print(f"{test_square.size}")
+                Size(width=250, height=250)
+            
+            Set height to negative:
+                >>> test_square = Square(Point(0,0), Size(250,250), 40)
+                >>> test_square.set_size(Size(100,-100))
+                Traceback (most recent call last):
+                    ...
+                square.SquareSizeNotAllowed: Minimum square size is Size(1,1). Given Size(width=100, height=-100)
+                >>> print(f"{test_square.size}")
+                Size(width=250, height=250)
+
+            Set width to negative:
+                >>> test_square = Square(Point(0,0), Size(250,250), 40)
+                >>> test_square.set_size(Size(-100,100))
+                Traceback (most recent call last):
+                    ...
+                square.SquareSizeNotAllowed: Minimum square size is Size(1,1). Given Size(width=-100, height=100)
+                >>> print(f"{test_square.size}")
+                Size(width=250, height=250)
+        """
         if size.height <= 0 or size.width <= 0:
             raise SquareSizeNotAllowed(f"Minimum square size is Size(1,1). Given {size}")
         self.size = size
@@ -55,7 +125,7 @@ class Square(Shape):
         
 
 
-    def calculate_corners(self, top_left: Point):
+    def calculate_corners(self, top_left: Point) -> list[Point]:
         """ Generates the corners for the object from the given top left corner
 
         Does not care about drawing boundaries and will happily point outside of the screen if wanted.
@@ -64,12 +134,24 @@ class Square(Shape):
         Args:
             top_left (Point): Represents the squares top left corner
         
+        Returns:
+            list[Point]: The newly created corners [top left, top right, bottom right, bottom left]
+        
         Examples:
-            Calculate corner at (0,0)
+            Calculate corners at origin for 100x100 square:
                 >>> test_square = Square(Point(1000,1000), Size(100,100), 40)
-                >>> test_square.calculate_corners(Point(0,0))
-                >>> print(f"{test_square.top_left}, {test_square.top_right}, {test_square.bottom_left}, {test_square.bottom_right}")
-                Point(x=0, y=0), Point(x=100, y=0), Point(x=0, y=100), Point(x=100, y=100)
+                >>> print(test_square.calculate_corners(Point(0,0)))
+                [Point(x=0, y=0), Point(x=100, y=0), Point(x=100, y=100), Point(x=0, y=100)]
+            
+            Calculate corners at negative position for 100x100 square:
+                >>> test_square = Square(Point(1000,1000), Size(100,100), 40)
+                >>> print(test_square.calculate_corners(Point(-1000,-1000)))
+                [Point(x=-1000, y=-1000), Point(x=-900, y=-1000), Point(x=-900, y=-900), Point(x=-1000, y=-900)]
+            
+            Calculate corners at large positive position for 10000x10000 square:
+                >>> test_square = Square(Point(1000,1000), Size(10000, 10000), 40)
+                >>> print(test_square.calculate_corners(Point(100_000,100_000)))
+                [Point(x=100000, y=100000), Point(x=110000, y=100000), Point(x=110000, y=110000), Point(x=100000, y=110000)]
             
             
         """
@@ -77,16 +159,19 @@ class Square(Shape):
         self.top_right = Point(top_left.x + self.size.width, top_left.y)
         self.bottom_left = Point(top_left.x, top_left.y + self.size.height)
         self.bottom_right = Point(top_left.x + self.size.width, top_left.y + self.size.height)
+
+        return [self.top_left, self.top_right, self.bottom_right, self.bottom_left]
     
     def get_points_for_continuous_drawing(self) -> list[Point]:
         """Returns a list of all drawing points for continuos drawing
         
         Examples:
-            Get all drawing points for square at top left with size of 100
+            Get all conmtinuous drawing points for square at top left with size of 100:
                 >>> test_square = Square(Point(0,0), Size(100,100), 40)
-                >>> test_square.get_points_for_continuos_drawing()
-                [Point(x=0, y=0), Point(x=100, y=0), Point(x=0, y=100), Point(x=100, y=100), Point(x=0, y=0)]
+                >>> test_square.get_points_for_continuous_drawing()
+                [Point(x=0, y=0), Point(x=100, y=0), Point(x=100, y=100), Point(x=0, y=100), Point(x=0, y=0)]
         """
+        # The list should start and end in the same spot
         return [self.top_left, self.top_right, self.bottom_right, self.bottom_left, self.top_left]
 
     def get_right_edge(self) -> int:
@@ -107,6 +192,14 @@ class Square(Shape):
         Check if self bottom is higher than other top, or other way around
         Check if self left is further to the right than other right, or other way around
         Takes into account the brush size included with each square
+
+        Examples:
+            Squares do not touch
+            Squares are identical
+            Squares one side of brushes overlap
+            Squares one side overlap
+            Squares share a corner
+            Squares corner inside of each other
         """
         # self left side is more to the right than other squares right side
         if self.get_left_edge() - self.brush_width > square.get_right_edge() + square.brush_width:

@@ -50,7 +50,7 @@ class Painter:
         # Keeps looping untill no images are found, or the timer runs out
         while (img_found := self.machine.count_all_image_occurances(image, **kwargs)) > 0:
             if time() > end_time:
-                raise RuntimeError(f"Images still found")
+                raise RuntimeError("Images still found")
             if images_found != img_found:
                 images_found = img_found
                 print(f"One image skrippled over, {img_found} left")
@@ -65,10 +65,6 @@ class Painter:
         elapsed = finish_time - start_time
         
         print(f"No images found any more. Took {draw_counter} lines and {elapsed:.2f} seconds")
-        
-
-
-
     
     def count_shapes_in_screen(self, shape: Shape):
         scr = shape.get_screenshot()

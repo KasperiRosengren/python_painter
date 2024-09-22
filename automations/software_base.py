@@ -8,46 +8,46 @@ class SoftwareBase:
         self.scr_directories = {}
 
     def start_new_drawing(self, width: int, height: int):
-        raise NotImplemented
+        raise NotImplementedError
     
     def get_drawing_boundaries(self) -> Box:
-        raise NotImplemented
+        raise NotImplementedError
     
     def draw_square_square_tool(self, square: Square):
-        raise NotImplemented
+        raise NotImplementedError
     
     def draw_square_freehand(self, square: Square):
-        raise NotImplemented
+        raise NotImplementedError
     
     def draw_line_freehand(self, start: Point, end: Point):
-        raise NotImplemented
+        raise NotImplementedError
     
     def draw_continues_lines(self, start: Point, points: list[Point]):
-        raise NotImplemented
+        raise NotImplementedError
     
     def draw_continues_lines_freehand(self, points: list[Point]):
-        raise NotImplemented
+        raise NotImplementedError
     
     def close_application(self, save: bool = False):
-        raise NotImplemented
+        raise NotImplementedError
     
     #
     #   DRAWING MODES
     #
     def set_brush_draw_mode_freehand(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def set_brush_draw_mode_rectangle(self):
-        raise NotImplemented
+        raise NotImplementedError
     
     #
     #   BRUSH
     #
     def get_brush_size(self) -> int:
-        raise NotImplemented
+        raise NotImplementedError
 
     def brush_size_increase(self):
-        raise NotImplemented
+        raise NotImplementedError
     
     def brush_size_decrease(self):
-        raise NotImplemented
+        raise NotImplementedError

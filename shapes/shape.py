@@ -12,31 +12,31 @@ class Shape:
         self.brush_width: int = None
 
     def set_size(self, size: Size):
-        raise NotImplemented
+        raise NotImplementedError
 
     def set_brush_size(self, new_brush_size: int, new_brush_width: int):
-        raise NotImplemented
+        raise NotImplementedError
 
     def calculate_drawing_points(self, top_left: Point):
-        raise NotImplemented
+        raise NotImplementedError
     
     def get_points_for_continuous_drawing(self) -> list[Point]:
-        raise NotImplemented
+        raise NotImplementedError
     
     def get_right_edge(self) -> int:
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_left_edge(self) -> int:
-        raise NotImplemented
+        raise NotImplementedError
     
     def get_top_edge(self) -> int:
-        raise NotImplemented
+        raise NotImplementedError
     
     def get_bottom_edge(self) -> int:
-        raise NotImplemented
+        raise NotImplementedError
     
     def is_colliding_with(self, square: "Shape") -> bool:
-        raise NotImplemented     
+        raise NotImplementedError     
 
     def get_screenshot(self):
-        raise NotImplemented
+        raise NotImplementedError
