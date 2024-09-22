@@ -1,0 +1,91 @@
+$python main.py --max-squares 10 --min-squares 10
+
+-------------------------------STARTING-------------------------------
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3134, y=239)	Point(x=3234, y=239)
+		Point(x=3134, y=339)	Point(x=3234, y=339)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=4038, y=1017)	Point(x=4138, y=1017)
+		Point(x=4038, y=1117)	Point(x=4138, y=1117)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3949, y=453)	Point(x=4049, y=453)
+		Point(x=3949, y=553)	Point(x=4049, y=553)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3684, y=617)	Point(x=3784, y=617)
+		Point(x=3684, y=717)	Point(x=3784, y=717)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3098, y=567)	Point(x=3198, y=567)
+		Point(x=3098, y=667)	Point(x=3198, y=667)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=4195, y=1152)	Point(x=4295, y=1152)
+		Point(x=4195, y=1252)	Point(x=4295, y=1252)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3415, y=1076)	Point(x=3515, y=1076)
+		Point(x=3415, y=1176)	Point(x=3515, y=1176)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3376, y=1099)	Point(x=3476, y=1099)
+		Point(x=3376, y=1199)	Point(x=3476, y=1199)
+Illegal position
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=4245, y=1056)	Point(x=4345, y=1056)
+		Point(x=4245, y=1156)	Point(x=4345, y=1156)
+Illegal position
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=2826, y=628)	Point(x=2926, y=628)
+		Point(x=2826, y=728)	Point(x=2926, y=728)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3992, y=1225)	Point(x=4092, y=1225)
+		Point(x=3992, y=1325)	Point(x=4092, y=1325)
+Square:
+	self.size=Size(width=100, height=100)
+	self.brush_size=40, self.brush_width=20
+	Corners:
+		Point(x=3688, y=859)	Point(x=3788, y=859)
+		Point(x=3688, y=959)	Point(x=3788, y=959)
+draw_area=Box(left=np.int64(2695), top=np.int64(177), width=2094, height=1167)
+Squares created
+Squares drawn
+Found 10/10 squares drawn, with presaved screenshot
+Found 10/10 squares drawn, with new screenshot
+One image skrippled over, 9 left
+One image skrippled over, 8 left
+One image skrippled over, 7 left
+One image skrippled over, 6 left
+One image skrippled over, 4 left
+One image skrippled over, 3 left
+One image skrippled over, 2 left
+One image skrippled over, 1 left
+No images found any more. Took 81 lines and 67.61 seconds

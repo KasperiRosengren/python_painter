@@ -1,7 +1,12 @@
 import pyautogui as pya
-from automations.software_base import SoftwareBase
+from pyscreeze import ImageNotFoundException, Point
 import pywinctl as pwctl # Some pyautogui functions are unavailabel on linux systems
+from PIL.Image import Image
+
 from time import sleep
+from typing import Union
+
+from automations.software_base import SoftwareBase
 
 class Machine:
     def __init__(self, screenshots_directory: str) -> None:
@@ -14,9 +19,9 @@ class Machine:
         pya.write(software.software_name)
 
         try:
-            pya.locateOnScreen(f"{software.scr_directories['base']}/window_selector_selected.png", 5)
+            pya.locateOnScreen(f"{software.scr_directories['base']}/window_selector_selected.png", 5, confidence=0.9)
         except pya.ImageNotFoundException:
-            pya.locateOnScreen(f"{software.scr_directories['base']}/window_selector_selected_already_open.png", 5)
+            pya.locateOnScreen(f"{software.scr_directories['base']}/window_selector_selected_already_open.png", 5, confidence=0.9)
 
         pya.press("enter")
 
@@ -34,7 +39,18 @@ class Machine:
         # Needs to sleep for a moment before checking. Sometimes "Xlib.error.BadWindow:" occurs if immediately checked
         sleep(1)
         titles = pwctl.getAllTitles()
-        if any([title == software.software_name for title in titles]):
+        if software.software_name in titles:
             raise RuntimeError(f"{software.software_name} is still runnning")
+    
+    def count_all_image_occurances(self, image: Union[str, Image], *args, **kwargs) -> int:
+        locations = pya.locateAllOnScreen(image, *args, **kwargs)
+        counter = 0
+        try:
+            for _ in locations:
+                counter += 1
+        except pya.ImageNotFoundException and ImageNotFoundException:
+            return 0
+        
+        return counter
 
 
