@@ -63,8 +63,8 @@ class Krita(SoftwareBase):
         pya.dragTo(square.bottom_right)
     
     def draw_square_freehand(self, square: Square):
-        points = [square.top_right, square.bottom_right, square.bottom_left, square.top_left]
-        self.draw_continues_lines_freehand(square.top_left, points)
+        points = [square.top_left, square.top_right, square.bottom_right, square.bottom_left, square.top_left]
+        self.draw_continues_lines_freehand(points)
 
     def draw_line_freehand(self, start: Point, end: Point):
         self.set_brush_draw_mode_freehand()

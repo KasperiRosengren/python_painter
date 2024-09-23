@@ -35,36 +35,36 @@ def parse_args():
 
     parser.add_argument(
         '-d', '--screenshots-dir', 
-        type=str, 
-        default="/home/rosekas/Workspaces/learning/python_automation/automate_painter/screenshots", 
+        type=str,
+        default="./screenshots",
         help='Directory where screenshots are stored. Default is ./screenshots'
     )
     
     parser.add_argument(
         '--min-squares', 
-        type=int, 
-        default=2, 
+        type=int,
+        default=2,
         help='Minimum number of squares (default: 2)'
     )
     
     parser.add_argument(
         '--max-squares', 
-        type=int, 
-        default=5, 
+        type=int,
+        default=5,
         help='Maximum number of squares (default: 5)'
     )
     
     parser.add_argument(
         '--square-width', 
-        type=int, 
-        default=100, 
+        type=int,
+        default=100,
         help='Width of each square (default: 100)'
     )
     
     parser.add_argument(
         '--square-height', 
-        type=int, 
-        default=100, 
+        type=int,
+        default=100,
         help='Height of each square (default: 100)'
     )
     args = parser.parse_args()
@@ -121,5 +121,3 @@ def main(screenshots: str, squrare_min_max: tuple[int], square_size: Size):
 if __name__=="__main__":
     args = parse_args()
     main(*args)
-
-    
