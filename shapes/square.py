@@ -11,22 +11,29 @@ from shapes.shape import Shape
 #   CLASSES
 #
 class SquareSizeNotAllowed(Exception):
-    """
+    """Exception raised for invalid square sizes.
+
+    This exception is raised when an attempt is made to set a square's size 
+    that does not meet the required constraints, such as being too small.
+
+    Args:
+        message (str): A description of the size issue.
+        size (Size): The size that caused the exception.
     
     Examples:
-        Square is too small:
+        Raise an exception for a square that is too small:
             >>> raise SquareSizeNotAllowed("Square is too small", Size(0,0))
             Traceback (most recent call last):
                 ...
             square.SquareSizeNotAllowed: Square is too small: Size(width=0, height=0)
     
-        Square is not wide enough:
+        Raise an exception for a square that is not wide enough:
             >>> raise SquareSizeNotAllowed("Square is not wide enough", Size(0,100))
             Traceback (most recent call last):
                 ...
             square.SquareSizeNotAllowed: Square is not wide enough: Size(width=0, height=100)
         
-        Square is not tall enough:
+        Raise an exception for a square that is not tall enough:
             >>> raise SquareSizeNotAllowed("Square is not tall enough", Size(100,0))
             Traceback (most recent call last):
                 ...
