@@ -16,9 +16,6 @@ class Shape:
 
     def set_brush_size(self, new_brush_size: int, new_brush_width: int):
         raise NotImplementedError
-
-    def calculate_drawing_points(self, top_left: Point):
-        raise NotImplementedError
     
     def get_points_for_continuous_drawing(self) -> list[Point]:
         raise NotImplementedError
